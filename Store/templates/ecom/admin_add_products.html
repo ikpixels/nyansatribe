@@ -1,0 +1,134 @@
+{% extends 'www/base.html' %}
+{% load embed_video_tags %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+{%block title%}
+{%endblock%}
+{%block content%}
+
+
+  <!-- main content -->
+  <main class="main">
+    <div class="container-fluid">
+      
+      <div class="row row--grid">
+        <div class="col-12">
+          <div class="profile">
+            <div class="profile__user">
+              <div class="profile__avatar">
+                <img src="{% static 'www/img/avatar.svg' %}" alt="">
+              </div>
+              <div class="profile__meta">
+                <h3>{{request.user}}</h3>
+                <span>Admin</span>
+              </div>
+            </div>
+
+            <!-- tabs nav -->
+            <ul class="nav nav-tabs profile__tabs" id="profile__tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="/profile">Dashboard</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Add products</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Add Events (Tickets)</a>
+              </li>
+            </ul>
+            <!-- end tabs nav -->
+          </div>
+
+          <!-- content tabs -->
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+              <div class="row row--grid">
+                <!-- details form -->
+                <div class="col-12 col-lg-8">
+                  <form action="#" method="POST" enctype="multipart/form-data" class="sign__form sign__form--profile">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-12">
+                        <h4 class="sign__title">Add product</h4>
+                      </div>
+
+                      <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                          <label class="sign__label" for="username">Category</label>
+                          {% render_field productForm.category class="sign__input" %}
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                          <label class="sign__label" for="name">Item name</label>
+                          {% render_field productForm.name class="sign__input" %}
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                          <label class="sign__label" for="summary">Summary</label>
+                          {% render_field productForm.simple_discription class="sign__input" %}
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                          <label class="sign__label" for="video">Price</label>
+                          {% render_field productForm.price class="sign__input" %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                          <label class="sign__label" for="youtube">youtube_video_link</label>
+                          {% render_field productForm.youtube_video_link class="sign__input" placeholder="Optinal" %}
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="sign__group">
+                          <label class="sign__label" for="description">Description</label>
+                          {{productForm.media}}
+                          {% render_field productForm.description class="sign__input" %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="sign__group">
+                          <label class="sign__label" for="description">Image 1  </label>
+                          {% render_field productForm.product_image class="" %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="sign__group">
+                          <label class="sign__label" for="description">Image 2  </label>
+                          {% render_field productForm.product_image2 class="" %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="sign__group">
+                          <label class="sign__label" for="description">Image 3  </label>
+                          {% render_field productForm.product_image3 class="" %}
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <button class="sign__btn" type="submit">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- end details form -->
+              </div>
+            </div>
+          </div>
+          <!-- end content tabs -->
+        </div>
+      </div>  
+    </div>
+  </main>
+  <!-- end main content -->
+{% endblock content %}
