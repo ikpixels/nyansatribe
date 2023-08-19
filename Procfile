@@ -1,1 +1,1 @@
-web: gunicorn 'ikmusic.wsgi
+web: gunicorn ikmusic.wsgi --log-file -
